@@ -41,19 +41,28 @@ Project ビューのムービーの▲をクリックして、サウンドを表
 またプレイボタンを押してみて、音が再生されるか確認します<br />
 
 ## マウスで方向が向けるように
+<a href="https://github.com/makoto-unity/PanoramaVideoWithUnity/blob/master/Assets/MyGame/Scripts/MouseLook.cs">MouseLook.cs</a>というスクリプトを利用しましょう。<br />
+これをダウンロードして、「Camera」オブジェクトにD&Dでいけます。
 
 ## エフェクト
-カラーコレクション
-ColorSuite
+カラーコレクションをかけて、色調整をしましょう。<br />
+
+https://github.com/keijiro/ColorSuite
+
+keijiroさんの「ColorSuite」を使います。こちらをダウンロードして、「ColorSuite」フォルダをプロジェクトにD&Dします。<br />
+そして、CameraオブジェクトにD&Dしたら、色調整が可能になります。各色を変更して調整しましょう。<br />
 
 ## Oculus Rift 対応
+メニューから Edit → Project Settings → Player を選択して、PlayerSettings を開きます。ここで、 Virtual Reality Supported にチェックを入れたらオーケーです。あとは Oculus を繋いで、Editor プレイするだけで、トラッキングできるはずです。簡単ですよね！
 
 ーーー以下スマホ対応ーーー
 
 【EasyMovieTexture の購入】
 
 【iOSの場合】
-一部ソースコードの変更
+このままだとXcode でビルド時にエラーが出てしまうので、
+http://qiita.com/ozawachev/items/ff0728ce4d01ece598ee
+この通り変更しましょう。（2015/10/19 作者に報告済みなのでいずれ直るかと思います）
 
 【Androidの場合】
 
