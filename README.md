@@ -1,7 +1,5 @@
 # UnityとOculusで360度パノラマ全天周動画を見る方法【無料編】
 
-https://support.apple.com/kb/DL837?locale=ja_JP&viewlocale=ja_JP
-
 「UnityとOculusで360度パノラマ全天周動画を見る方法」のシリーズとしては第３回目なのですが、今までの２回は全て有料アセットを使ったりしていてイマイチ一般性がなかったのではないかと思います。今回は「無料」ということにこだわり（Oculus をUnityで使うのも無料になりましたし）、パノラマ動画アプリを作ってみたいと思います。
 
 ## 素材作り
@@ -12,7 +10,9 @@ Theta Sなんてないよ、とかいう人はとりあえず、この<a href="h
 
 ## Unity で動画を扱うための準備
 
-Windows はQuick Time をインストールすることを忘れないで下さい。Quick Time がないとUnityに動画をインポート出来ません。始めてのQuickTimeインストールした際は一度Windowsを再起動した方がいいかもしれません。
+Windows はQuick Time をインストールすることを忘れないで下さい。<a href="https://support.apple.com/kb/DL837?locale=ja_JP&viewlocale=ja_JP">Quick Time</a> 
+
+がないとUnityに動画をインポート出来ません。始めてのQuickTimeインストールした際は一度Windowsを再起動した方がいいかもしれません。
 動画ファイルのQuickTimeへの関連付けも大事です。もし一回Reimport。再起動。
 
 
