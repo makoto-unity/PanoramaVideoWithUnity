@@ -10,9 +10,7 @@ Theta Sなんてないよ、とかいう人はとりあえず、この<a href="h
 
 ## Unity で動画を扱うための準備
 
-Windows はQuick Time をインストールすることを忘れないで下さい。<a href="https://support.apple.com/kb/DL837?locale=ja_JP&viewlocale=ja_JP">Quick Time</a> 
-
-がないとUnityに動画をインポート出来ません。始めてのQuickTimeインストールした際は一度Windowsを再起動した方がいいかもしれません。
+Windows はQuick Time をインストールすることを忘れないで下さい。<a href="https://support.apple.com/kb/DL837?locale=ja_JP&viewlocale=ja_JP">Quick Time</a> がないとUnityに動画をインポート出来ません。始めてのQuickTimeインストールした際は一度Windowsを再起動した方がいいかもしれません。
 動画ファイルのQuickTimeへの関連付けも大事です。もし一回Reimport。再起動。
 
 
