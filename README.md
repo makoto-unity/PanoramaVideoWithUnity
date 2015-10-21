@@ -1,5 +1,7 @@
 # UnityとOculusで360度パノラマ全天周動画を見る方法【無料編】
 
+https://support.apple.com/kb/DL837?locale=ja_JP&viewlocale=ja_JP
+
 「UnityとOculusで360度パノラマ全天周動画を見る方法」のシリーズとしては第３回目なのですが、今までの２回は全て有料アセットを使ったりしていてイマイチ一般性がなかったのではないかと思います。今回は「無料」ということにこだわり（Oculus をUnityで使うのも無料になりましたし）、パノラマ動画アプリを作ってみたいと思います。
 
 ## 素材作り
@@ -7,6 +9,12 @@
 iPhone/Androidアプリでパノラマ動画を持ってきます。Theta Sからアプリで持ってくるだけで、正距円筒図法の動画になるので楽です。<br />
 Theta m-15の方はMac/Windows 側で正距円筒図法にステッチ（複数カメラからの映像を一つのパノラマ映像にする作業）をする必要があります。専用Mac/Winアプリで自動ステッチしてください。<br />
 Theta Sなんてないよ、とかいう人はとりあえず、この<a href="https://github.com/makoto-unity/PanoramaVideoWithUnity/blob/master/Assets/MyGame/Movies/IMG_4865.MP4">この動画</a>をダウンロードして使ってください。<br />
+
+## Unity で動画を扱うための準備
+
+Windows はQuick Time をインストールすることを忘れないで下さい。Quick Time がないとUnityに動画をインポート出来ません。始めてのQuickTimeインストールした際は一度Windowsを再起動した方がいいかもしれません。
+動画ファイルのQuickTimeへの関連付けも大事です。もし一回Reimport。再起動。
+
 
 ## 投影する天球をシーンに置く
 Unity を立ち上げてください。<br />
@@ -98,19 +106,17 @@ Str File Name というところにムービーファイル名を書くのです
 File → Build Settings でビルド設定画面を表示します。一旦現在のシーンは捨てて、Assets/EasyMovieTexture/Scene/Demo をD&D します。まずはデモで正常に動くか確認しましょう。
 
 ## iOSビルド
+iOS 7.0以上
 では順番に行きましょう。まずはiOSビルド。引き続き Build Settings 画面でPlatform を iOS に変更して、Switch Platform と押すと変換が始まります。そして、Build ボタンを押すと、プロジェクト名を聞かれるので、適当な名前を付けてください。MovieDemo とかでしょうか。<br />
+Code Sign を入れておきます。
 おっと、ビルドエラーがでますので、先ほどMoviePlay.cs の中で書いたコードがモバイルでは動かないということなので、
 
-		MovieTexture movie = (GetComponent<Renderer>().material.mainTexture as MovieTexture);
-		movie.loop = true;
-		movie.Play();
+        (GetComponent<Renderer>().material.mainTexture as MovieTexture).Play();
 
 というコードを
 
     #if UNITY_EDITOR || UNITY_STANDALONE
-		MovieTexture movie = (GetComponent<Renderer>().material.mainTexture as MovieTexture);
-		movie.loop = true;
-		movie.Play();
+        (GetComponent<Renderer>().material.mainTexture as MovieTexture).Play();
     #endif
 
 と、上下で #if〜 と #endif を加えてください。<br />
@@ -119,6 +125,18 @@ File → Build Settings でビルド設定画面を表示します。一旦現�
 それで、iPhone を繋げてビルドして動くことを確認してください。真ん中に二つのムービーが再生されたら成功です。 <br />
 
 ## Androidビルド
+Android 4.0 以上です。
 Androidはもっと簡単です。引き続き Build Settings 画面でPlatform を Android に変更して、Switch Platform と押すと変換が始まります。<br />
 すぐにビルド、と行きたいですが、その前に設定するところがあります。Unity → Preference (Mac) /Edit → Preference (Winの場合) でPreference を表示させます。<br />
 External Tools を選んでいただいて、Android の SDK の項目を Browse でAndroid SDKのパスを入力すればOKです。<br />
+Graphics Level → Open GLES2
+Internal Access → Require
+Write Access External(SDCard)
+
+## Google Cardboard SDK
+このままではスマホで書き出しても、ハコスコやCardboardで見ても画面に追従してくれないんですよね。<br />
+なので、Google Cardboard SDK を利用します。これは無料なので使いやすいです。iOSも使えますのでご安心ください。<br />
+<a href="https://developers.google.com/cardboard/unity/?hl=ja">ここから</a>SDKをダウンロードしてください。<br />
+ダウンロードした CardboardSDKForUnity.unitypackage をUnity エディタ の Project ビューにD&Dします。すると、Import するか旨を聞かれるので、インポートしてください。<br />
+インポート終了すると、エラーが表示されるかもしれませんが無視してください。Console で Clear して何も出ていないのならOKです。<br />
+で早速、 Cardboard/Prefab/CardboardMain を Hierarchy ビューにD&Dします。これでスマホがカメラと連動するような挙動になります。あ、既存のCamera  を一旦オフ（Camera を選択して、Inspector ビューの一番上のチェックボックスをオフに）にしておきましょう。<br />
